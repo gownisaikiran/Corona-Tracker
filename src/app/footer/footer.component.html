@@ -1,0 +1,26 @@
+<!-- <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+    <div class="container text-center">
+      <small>Copyright &copy; Your Website</small>
+    </div>
+</footer> -->
+
+<div class="footer">
+    <p>Copyright &copy; Your Website</p>
+  </div>
+  <script>
+    $(document).ready(function() {
+  
+        $('.counter').each(function () {
+        $(this).prop('Counter',0).animate({
+        Counter: $(this).text()
+        }, {
+        duration: 4000,
+        easing: 'swing',
+        step: function (now) {
+        $(this).text(Math.ceil(now));
+        }
+        });
+        });
+  
+  });
+  </script>

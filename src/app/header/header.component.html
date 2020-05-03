@@ -1,0 +1,30 @@
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+            <img src="../../assets/c-logo.png" style="width: 220px;" alt="Corona Tracker">
+          </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item" [routerLinkActive]="['active']" data-target="#navbarResponsive" data-toggle="collapse">
+            <a class="nav-link" routerLink="/"><h3>Home</h3></a>
+          </li>
+
+          <li class="nav-item" [routerLinkActive]="['active']" data-target="#navbarResponsive" data-toggle="collapse">
+            <a class="nav-link" routerLink="countries"><h3>Countries</h3></a>
+          </li>
+
+          <li class="nav-item" [routerLinkActive]="['active']" data-target="#navbarResponsive" data-toggle="collapse">
+            <a class="nav-link" routerLink="about"><h3>About</h3></a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- /.container -->

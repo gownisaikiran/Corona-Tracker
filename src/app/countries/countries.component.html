@@ -1,0 +1,73 @@
+<!-- Loader -->
+<div class="ui  inverted dimmer" [class.active]='loading'>
+  <div class="ui text loader">Loading</div>
+</div>
+<!-- end -->
+<div class="jumbotron bg-white text-center">
+<h1>Country Wise COVID-19 Statistics</h1>
+<hr>
+
+<div class="">
+    <div class="form-group col-lg-5 mx-auto">
+        <label for="c">Select Country</label>
+        <select id="c" class="form-control" name="country" #input (change)='updateCountryWiseData(input.value)'>
+            <option value="{{con}}" *ngFor="let con of countries"  [selected]="con==default_country">{{con}}</option>
+        </select>
+
+    </div>
+</div>
+</div>
+<div class="row m-3">
+    <div class="col border d-flex justify-content-center m-3 p-3 shadow-lg p-3 mb-5 bg-primary rounded ">
+        <div class="ui statistic">
+          <br>
+            <div class="label" style="font-size:3rem;">
+              Confirmed
+            </div>
+            <br>
+            <div class="value counter-count">
+              {{confirmed}}
+            </div>
+            <br>
+          </div> 
+    </div>
+    <div class="col border d-flex justify-content-center m-3 p-3 shadow-lg p-3 mb-5 bg-success rounded">
+        <div class="ui statistic">
+          <br>
+            <div class="label" style="font-size:3rem;">
+              Recovered
+            </div>
+            <br>
+            <div class="value">
+              {{recovered}}
+            </div>
+            <br>
+          </div>
+    </div>
+    <div class="col border d-flex justify-content-center m-3 p-3 shadow-lg p-3 mb-5 bg-danger rounded">
+        <div class="ui statistic">
+          <br>
+            <div class="label" style="font-size:3rem;">
+              Death
+            </div>
+            <br>
+            <div class="value">
+              {{death}}
+            </div>
+            <br>
+          </div>
+    </div>
+    <div class="col border d-flex justify-content-center m-3 p-3 shadow-lg p-3 mb-5 bg-warning rounded">
+        <div class="ui statistic">
+          <br>
+            <div class="label" style="font-size:3rem;">
+              Active
+            </div>
+            <br>
+            <div class="value">
+              {{active}}
+            </div>
+            <br>
+          </div>
+    </div>  
+</div>
