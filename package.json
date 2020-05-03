@@ -1,6 +1,6 @@
 {
   "name": "corona-tracker",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~9.1.4",
     "@angular/router": "~9.1.4",
     "angular-google-charts": "^1.1.4",
+    "angular-material": "^1.1.21",
     "express": "^4.17.1",
     "ngx-bootstrap": "^5.6.1",
     "rxjs": "~6.5.4",

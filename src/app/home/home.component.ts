@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApidataService } from '../apidata.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { IGlobalData } from '../models/gobal-data';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class HomeComponent implements OnInit {
   
-  private localUrl = 'https://covid-19-data.p.rapidapi.com/totals?format=json';
+  globalData: IGlobalData[];
   confirmed=0;
   recovered=0;
   death=0;
@@ -19,14 +20,7 @@ export class HomeComponent implements OnInit {
   title = "Countries Chart of more than One Lakh Cases";
   columnNames = ['Country', 'Cases'];
   myType = '';
-  myData = [
-    //  ['Country', 'Cases'],
-      // ['London', 8136000],
-      // ['New York', 8538000],
-      // ['Paris', 2244000],
-      // ['Berlin', 3470000],
-      // ['Kairo', 19500000]
-    ];
+  myData = [];
    
     
   constructor(private dataService:ApidataService) {  }
@@ -35,56 +29,57 @@ export class HomeComponent implements OnInit {
   {
     this.myType='PieChart';
     
+
     this.dataService.getHomeChartData().subscribe(
-      element => {
-        //this.pieChartData = data as any [];	 // FILL THE CHART ARRAY WITH DATA.
-        for(let i=0;i<element['response'].length;i++)
       {
-        let country_name = element['response'][i]['country'];
-        let total_cases = element['response'][i]['cases']['total'];
-        if(total_cases>100000 && country_name!="All")
-        {
-          this.myData.push([country_name,total_cases]);
-          //console.log(this.myData);
+        next: (element) => {
+          console.log(element);
+          for(let i=0;i<element['response'].length;i++)
+          {
+             let country_name = element['response'][i]['country'];
+             let total_cases = element['response'][i]['cases']['total'];
+             if(total_cases>100000 && country_name!="All")
+             {
+               this.myData.push([country_name,total_cases]);
+               //console.log(this.myData);
+             }          
+           //console.log(country_name+" "+total_cases);
+         }
+          //this.initChart('c');
+        }, 
+        complete : ()=>{
+          this.loading = false;
         }
-        //console.log(country_name+" "+total_cases);
       }
-    },
-    (err: HttpErrorResponse) => {
-        console.log (err.message);
-    }
     );
-
-    console.log(this.myData);
-  }
-
-
-
-  ngOnInit(): void {
-
-    //console.log(this.loading);
-    // this.init_chart();
-    // this.myType='PieChart';
-    
     // this.dataService.getHomeChartData().subscribe(
     //   element => {
     //     //this.pieChartData = data as any [];	 // FILL THE CHART ARRAY WITH DATA.
-    //     for(let i=0;i<element['response'].length;i++)
-    //   {
-    //     let country_name = element['response'][i]['country'];
-    //     let total_cases = element['response'][i]['cases']['total'];
-    //     if(total_cases>100000 && country_name!="All")
-    //     {
-    //       this.myData.push([country_name,total_cases]);
-    //       //console.log(this.myData);
-    //     }
+    //     console.log(element)
+    //    for(let i=0;i<element['response'].length;i++)
+    //    {
+    //       let country_name = element['response'][i]['country'];
+    //       let total_cases = element['response'][i]['cases']['total'];
+    //       if(total_cases>100000 && country_name!="All")
+    //       {
+    //         this.myData.push([country_name,total_cases]);
+    //         //console.log(this.myData);
+    //       }          
     //     //console.log(country_name+" "+total_cases);
     //   }
+    //   this.myData.slice(0,5);
     // },
     // (err: HttpErrorResponse) => {
     //     console.log (err.message);
     // }
     // );
+
+    console.log(this.myData.length);
+  }
+
+
+
+  ngOnInit(): void {
 
     console.log(this.myData);
 
@@ -111,21 +106,6 @@ export class HomeComponent implements OnInit {
           }
         }
       )
-
-
-
-
-
-    // this.dataService.getGlobalData().forEach(element => {
-    //   console.log(element)
-    //   this.confirmed = element.confirmed;
-    //   this.recovered = element.recovered;
-    //   this.death = element.deaths;
-    //   this.active = this.confirmed-(this.recovered+this.death);
-    //  // this.loading='false';
-    // });
- 
-    //console.log(this.loading);
     
   }
 

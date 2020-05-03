@@ -1,6 +1,7 @@
 export interface IGlobalData{
-    confirmed:number;
-    recovered:number;
-    deaths:number;
-    active:number;
+    country ?: string , 
+    confirmed ?: number , 
+    deaths ?: number, 
+    recovered ?:number , 
+    active ?: number 
 }

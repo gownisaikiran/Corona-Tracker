@@ -19,6 +19,7 @@ export class CountriesComponent implements OnInit {
   active=0;
   loading = true;
   countries:string[]  = [];
+  datewisedata=[];
 
   constructor(private apiDataService:ApidataService) { }
 
@@ -58,6 +59,8 @@ export class CountriesComponent implements OnInit {
         this.active= +result['response'][0]['cases']['active'];
         this.recovered= +result['response'][0]['cases']['recovered'];
         this.death= +result['response'][0]['deaths']['total'];
+
+        this.updateCountryDateWiseData(country);
         }, 
         complete : ()=>{
           this.loading = false;
@@ -65,4 +68,38 @@ export class CountriesComponent implements OnInit {
       });
 
   }
+
+
+  updateCountryDateWiseData(country:string){
+    this.loading = true;
+    let date:string,confirmed,recovered,death;
+    this.apiDataService.getCountryWiseDateData(country).subscribe(
+      {
+        next: (result) => {
+        // const arrayOfObj = Object.entries(result).map((e) => ( { [e[0]]: e[1] } ));
+        var myData = Object.keys(result).map(key => {
+          return result[key];
+      })
+         //console.log(myData);
+        
+         for(let i=0;i<myData.length;i++){
+            //console.log(myData[i]);
+            date=myData[i]['Date'];
+            confirmed=myData[i]['Confirmed'];
+            recovered=myData[i]['Recovered'];
+            death=myData[i]['Deaths'];
+            let date1=date.substr(0,10);
+            this.datewisedata.push([date1,confirmed,recovered,death]);
+         }
+         console.log(this.datewisedata);
+        
+        }, 
+        complete : ()=>{
+          this.loading = false;
+        }
+      });
+  }
+
+
+
 }

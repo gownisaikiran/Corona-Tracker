@@ -11,7 +11,7 @@
     <div class="form-group col-lg-5 mx-auto">
         <label for="c">Select Country</label>
         <select id="c" class="form-control" name="country" #input (change)='updateCountryWiseData(input.value)'>
-            <option value="{{con}}" *ngFor="let con of countries"  [selected]="con==default_country">{{con}}</option>
+            <option value="{{con}}"  *ngFor="let con of countries"  [selected]="con==default_country">{{con}}</option>
         </select>
 
     </div>
@@ -71,3 +71,46 @@
           </div>
     </div>  
 </div>
+
+
+<div class="row justify-content-center">
+  <div class="col-10">
+<h1  class="text-center">Date Wise Data of the Country</h1>
+
+<div class="table-responsive">
+<table class="table table-dark table-sm">
+  <thead>
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Confirmed</th>
+      <th scope="col">Recovered</th>
+      <th scope="col">Death</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of datewisedata">
+      <th scope="row">{{data[0]}}</th>
+      <td>{{data[1]}}</td>
+      <td>{{data[2]}}</td>
+      <td>{{data[3]}}</td>
+    </tr>
+    <!-- <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr> -->
+  </tbody>
+</table>
+
+</div>
+
+</div>
+</div>
+<br><br><br>
