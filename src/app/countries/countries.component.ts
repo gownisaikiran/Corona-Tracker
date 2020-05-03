@@ -71,6 +71,7 @@ export class CountriesComponent implements OnInit {
 
 
   updateCountryDateWiseData(country:string){
+    this.datewisedata = [];
     this.loading = true;
     let date:string,confirmed,recovered,death;
     this.apiDataService.getCountryWiseDateData(country).subscribe(
