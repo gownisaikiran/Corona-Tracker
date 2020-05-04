@@ -1,0 +1,104 @@
+<!-- Loader -->
+<div class="ui  inverted dimmer" [class.active]='loading'>
+    <div class="ui text loader">Loading</div>
+</div>
+  <!-- end -->
+  <div class="jumbotron bg-white text-center">
+  <h1>COVID-19 Statistics of India</h1>
+  <hr>
+  <div class="">
+    <div class="form-group col-lg-5 mx-auto">
+        <label for="c">Select State</label>
+        <select id="c" class="form-control" name="country" #input (change)='updateStateWiseData(input.value)'>
+            <option value="{{state}}"  *ngFor="let state of states"  [selected]="state==default_state">{{state}}</option>
+        </select>
+
+    </div>
+</div>
+  </div>
+  <div class="row m-3">
+      <div class="col border d-flex justify-content-center m-3 p-3 shadow-lg p-3 mb-5 bg-primary rounded ">
+          <div class="ui statistic">
+            <br>
+              <div class="label" style="font-size:3rem;">
+                Confirmed
+              </div>
+              <br>
+              <div class="value counter-count">
+                {{confirmed}}
+              </div>
+              <br>
+            </div> 
+      </div>
+      <div class="col border d-flex justify-content-center m-3 p-3 shadow-lg p-3 mb-5 bg-success rounded">
+          <div class="ui statistic">
+            <br>
+              <div class="label" style="font-size:3rem;">
+                Recovered
+              </div>
+              <br>
+              <div class="value">
+                {{recovered}}
+              </div>
+              <br>
+            </div>
+      </div>
+      <div class="col border d-flex justify-content-center m-3 p-3 shadow-lg p-3 mb-5 bg-danger rounded">
+          <div class="ui statistic">
+            <br>
+              <div class="label" style="font-size:3rem;">
+                Death
+              </div>
+              <br>
+              <div class="value">
+                {{death}}
+              </div>
+              <br>
+            </div>
+      </div>
+      <div class="col border d-flex justify-content-center m-3 p-3 shadow-lg p-3 mb-5 bg-warning rounded">
+          <div class="ui statistic">
+            <br>
+              <div class="label" style="font-size:3rem;">
+                Active
+              </div>
+              <br>
+              <div class="value">
+                {{active}}
+              </div>
+              <br>
+            </div>
+      </div>  
+  </div>
+
+
+  <div class="row justify-content-center">
+    <div class="col-10">
+  <h1  class="text-center">District Wise Data of the State</h1>
+  
+  <div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col" class="text-center">Date</th>
+        <th scope="col" class="text-center">Confirmed</th>
+        <th scope="col" class="text-center">Recovered</th>
+        <th scope="col" class="text-center">Death</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let district of districts">
+        <th scope="row" class="text-center">{{district[0]}}</th>
+        <td class="text-center">{{district[1]}}</td>
+        <td class="text-center">{{district[2]}}</td>
+        <td class="text-center">{{district[3]}}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  </div>
+  
+  </div>
+  </div>
+  
+  <br><br><br>

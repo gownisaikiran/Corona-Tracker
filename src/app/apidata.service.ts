@@ -47,6 +47,14 @@ export class ApidataService {
   }
 
 
+  getStates(){
+    return this.http.get("https://api.covid19india.org/state_district_wise.json").pipe(
+      map(result => {      
+        return result;
+      })
+    );
+  }
+
   getCountryWiseData(country:string){
     let todayDate = new Date().toISOString().slice(0,10);
     let url = "https://covid-193.p.rapidapi.com/history?day="+todayDate+"&country="+country+"";
@@ -55,6 +63,8 @@ export class ApidataService {
   }
 
   getCountryWiseDateData(country:string){
+    if(country=='USA')
+    country='united-states';
     return this.http.get("https://api.covid19api.com/country/"+country.toLowerCase()).pipe(
       map(result => {      
         return result;

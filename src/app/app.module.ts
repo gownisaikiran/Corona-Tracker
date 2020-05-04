@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CountriesComponent } from './countries/countries.component';
 import { AboutComponent } from './about/about.component';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { IndiaComponent } from './india/india.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { GoogleChartsModule } from 'angular-google-charts';
     FooterComponent,
     HomeComponent,
     CountriesComponent,
-    AboutComponent
+    AboutComponent,
+    IndiaComponent
   ],
   imports: [
     BrowserModule,

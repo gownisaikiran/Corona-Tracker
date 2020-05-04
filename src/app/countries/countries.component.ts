@@ -20,6 +20,7 @@ export class CountriesComponent implements OnInit {
   loading = true;
   countries:string[]  = [];
   datewisedata=[];
+  
 
   constructor(private apiDataService:ApidataService) { }
 
@@ -31,8 +32,12 @@ export class CountriesComponent implements OnInit {
         next: (result) => {          
           for(let i=0;i<result['response'].length;i++)
           {
-            let country_name = result['response'][i]['country'];
-            this.countries.push(country_name);
+            if(result['response'][i]['country']!='All')
+            {
+              let country_name = result['response'][i]['country'];
+              this.countries.push(country_name);
+            }
+            
           }
            this.countries.sort();
         }, 
@@ -49,7 +54,7 @@ export class CountriesComponent implements OnInit {
   updateCountryWiseData(country:string):void{
 
     this.loading = true;
-    console.log(country);
+    //console.log(country);
 
     this.apiDataService.getCountryWiseData(country).subscribe(
       {
@@ -93,7 +98,6 @@ export class CountriesComponent implements OnInit {
             let date1=date.substr(0,10);
             this.datewisedata.push([date1,confirmed,recovered,death]);
          }
-         console.log(this.datewisedata);
         
         }, 
         complete : ()=>{

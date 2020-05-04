@@ -1,4 +1,4 @@
-.footer {
+/* .footer {
    position: fixed;
    left: 0;
    bottom: 0;
@@ -7,4 +7,13 @@
    background-color : #343a40;
    color: white;
    text-align: center;
+} */
+.fixed-btm {
+   /* position: absolute; */
+   right: 0;
+   bottom: 0;
+   left: 0;
+   z-index: 1030;
+   flex-direction: column;
 }
+
