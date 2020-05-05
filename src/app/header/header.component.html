@@ -10,7 +10,8 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
 
-          <li class="nav-item" [routerLinkActive]="['active']" data-target="#navbarResponsive" data-toggle="collapse">
+          <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+            true}" data-target="#navbarResponsive" data-toggle="collapse">
             <a class="nav-link" routerLink="/"><h3>Home</h3></a>
           </li>
 
