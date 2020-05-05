@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IGlobalData } from './models/gobal-data';
 import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
@@ -13,7 +12,6 @@ export class ApidataService {
   getGlobalData(){
     let localUrl = 'https://covid-19-data.p.rapidapi.com/totals?format=json';
     //return this.http.get( localUrl ,{headers: {"x-rapidapi-host": "covid-19-data.p.rapidapi.com","x-rapidapi-key": "8dab45a16fmsh59c7b5c80bab8dep175e69jsncbca2b095e1b"}} );
-
 
     return this.http.get( localUrl ,{headers: {"x-rapidapi-host": "covid-19-data.p.rapidapi.com","x-rapidapi-key": "8dab45a16fmsh59c7b5c80bab8dep175e69jsncbca2b095e1b"}} ).pipe(
       map(result => {
@@ -37,7 +35,7 @@ export class ApidataService {
 
   getCountries()
   {
-    let localUrl = 'https://covid-19-data.p.rapidapi.com/help/countries';
+
     return this.http.get("https://api.covid19api.com/summary").pipe(
       map(result => {      
         return result['Countries'];

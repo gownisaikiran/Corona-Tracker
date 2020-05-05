@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { IGlobalData } from '../models/gobal-data';
-import { Observable } from 'rxjs';
 import { ApidataService } from '../apidata.service';
 
 @Component({
@@ -11,7 +8,7 @@ import { ApidataService } from '../apidata.service';
 })
 export class CountriesComponent implements OnInit {
 
-  private localUrl = 'https://covid-19-data.p.rapidapi.com/help/countries';
+  
   default_country="India";
   confirmed=0;
   recovered=0;
@@ -76,14 +73,14 @@ export class CountriesComponent implements OnInit {
 
 
   updateCountryDateWiseData(country:string){
-    // fhgfhgf
+  
     this.datewisedata = [];
     this.loading = true;
     let date:string,confirmed,recovered,death;
     this.apiDataService.getCountryWiseDateData(country).subscribe(
       {
         next: (result) => {
-        // const arrayOfObj = Object.entries(result).map((e) => ( { [e[0]]: e[1] } ));
+
         var myData = Object.keys(result).map(key => {
           return result[key];
       })
@@ -105,7 +102,5 @@ export class CountriesComponent implements OnInit {
         }
       });
   }
-
-
 
 }
