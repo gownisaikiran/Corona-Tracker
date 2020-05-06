@@ -7,11 +7,16 @@
 
   <h1 style="text-align: center;">COVID-19 Global Statistics</h1>
 
-<br>
+  <div class="d-none d-lg-block">
+    <br><br>
+  </div>
+
+<img src="../../assets/home.gif" class="rounded mx-auto d-block d-none d-sm-block d-md-none" alt="" width="55%" height="20%">
 <div class="row m-3" style="
 padding-bottom: 77px;
 ">
-    <div class="col border d-flex justify-content-center m-3 p-3 shadow-lg p-3 mb-5 bg-primary rounded">
+
+    <div class="col border d-flex justify-content-center m-3 p-3 shadow-lg p-3 confrmd">
         <div class="ui statistic">
           <br>
             <div class="label" style="font-size:3rem;">
@@ -24,7 +29,7 @@ padding-bottom: 77px;
             <br>
           </div> 
     </div>
-    <div class="col border d-flex justify-content-center m-3 p-3 shadow-lg p-3 mb-5 bg-success rounded">
+    <div class="col border d-flex justify-content-center m-3 p-3 shadow-lg p-3 recvrd">
         <div class="ui statistic">
           <br>
             <div class="label" style="font-size:3rem;">
@@ -35,9 +40,12 @@ padding-bottom: 77px;
               {{recovered}}
             </div>
             <br>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: {{rec_perc}}%" attr.aria-valuenow="{{rec_perc}}"  aria-valuemin="0" aria-valuemax="100">{{rec_perc}}%</div>
+            </div>
           </div>
     </div>
-    <div class="col border d-flex justify-content-center m-3 p-3 shadow-lg p-3 mb-5 bg-danger rounded">
+    <div class="col border d-flex justify-content-center m-3 p-3 shadow-lg p-3 death">
         <div class="ui statistic">
           <br>
             <div class="label" style="font-size:3rem;">
@@ -48,9 +56,12 @@ padding-bottom: 77px;
               {{death}}
             </div>
             <br>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: {{death_perc}}%" attr.aria-valuenow="{{death_perc}" aria-valuemin="0" aria-valuemax="100">{{death_perc}}%</div>
+            </div>
           </div>
     </div>
-    <div class="col border d-flex justify-content-center m-3 p-3 shadow-lg p-3 mb-5 bg-warning rounded">
+    <div class="col border d-flex justify-content-center m-3 p-3 shadow-lg p-3 actv">
         <div class="ui statistic">
           <br>
             <div class="label" style="font-size:3rem;">
@@ -61,6 +72,9 @@ padding-bottom: 77px;
               {{active}}
             </div>
             <br>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: {{active_perc}}%" attr.aria-valuenow="{{active_perc}}" aria-valuemin="0" aria-valuemax="100">{{active_perc}}%</div>
+            </div>
           </div>
     </div>  
 </div>

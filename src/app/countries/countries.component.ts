@@ -14,6 +14,9 @@ export class CountriesComponent implements OnInit {
   recovered=0;
   death=0;
   active=0;
+  rec_perc=0;
+  death_perc=0;
+  active_perc=0;
   loading = true;
   countries:string[]  = [];
   datewisedata=[];
@@ -61,6 +64,9 @@ export class CountriesComponent implements OnInit {
         this.active= +result['response'][0]['cases']['active'];
         this.recovered= +result['response'][0]['cases']['recovered'];
         this.death= +result['response'][0]['deaths']['total'];
+        this.rec_perc= +((this.recovered/this.confirmed)*100).toFixed(2);
+        this.death_perc= +((this.death/this.confirmed)*100).toFixed(2);
+        this.active_perc= +((this.active/this.confirmed)*100).toFixed(2);
 
         this.updateCountryDateWiseData(country);
         }, 

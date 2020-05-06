@@ -10,6 +10,9 @@ export class HomeComponent implements OnInit {
   
   confirmed=0;
   recovered=0;
+  rec_perc=0;
+  death_perc=0;
+  active_perc=0;
   death=0;
   active=0;
   loading= true;
@@ -32,7 +35,9 @@ export class HomeComponent implements OnInit {
               this.recovered = result.recovered;
               this.death = result.deaths;
               this.active = this.confirmed-(this.recovered+this.death);
-
+              this.rec_perc= +((this.recovered/this.confirmed)*100).toFixed(2);
+              this.death_perc= +((this.death/this.confirmed)*100).toFixed(2);
+              this.active_perc= +((this.active/this.confirmed)*100).toFixed(2);
           }, 
           complete : ()=>{
             this.loading = false;

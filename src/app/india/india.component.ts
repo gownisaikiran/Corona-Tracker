@@ -14,6 +14,9 @@ export class IndiaComponent implements OnInit {
   recovered=0;
   death=0;
   active=0;
+  rec_perc=0;
+  death_perc=0;
+  active_perc=0;
   states:string[]=[];
   districts=[];
 
@@ -65,6 +68,9 @@ export class IndiaComponent implements OnInit {
                 this.recovered= (+this.recovered) + ( data[1]['recovered']);
                 this.death= (+this.death) + (+data[1]['deceased']);
                 this.active = (+this.confirmed) - ((+this.recovered)+(+this.death));
+                this.rec_perc= +((this.recovered/this.confirmed)*100).toFixed(2);
+                this.death_perc= +((this.death/this.confirmed)*100).toFixed(2);
+                this.active_perc= +((this.active/this.confirmed)*100).toFixed(2);
                 // console.log(data[1]['confirmed'])
               }
               console.log(this.confirmed,this.recovered,this.death);
