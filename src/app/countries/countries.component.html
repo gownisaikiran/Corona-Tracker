@@ -1,5 +1,5 @@
 <!-- Loader -->
-<div class="ui  inverted dimmer" [class.active]='loading'>
+<div class="ui  inverted dimmer" [class.active]='loading' style="position: fixed;">
   <div class="ui text loader">Loading</div>
 </div>
 <!-- end -->
@@ -18,8 +18,8 @@
 </div>
 </div>
 <div class="row m-3">
-    <div class="col border d-flex justify-content-center m-3 p-3 shadow-lg p-3  confrmd">
-        <div class="ui statistic">
+    <div class="col border d-flex justify-content-center m-3 px-4 py-3 shadow-lg confrmd">
+        <div class="ui statistic w-100">
           <br>
             <div class="label" style="font-size:3rem;">
               Confirmed
@@ -32,8 +32,8 @@
 
           </div> 
     </div>
-    <div class="col border d-flex justify-content-center m-3 p-3 shadow-lg p-3  recvrd">
-        <div class="ui statistic">
+    <div class="col border d-flex justify-content-center m-3 px-4 py-3 shadow-lg recvrd">
+        <div class="ui statistic w-100">
           <br>
             <div class="label" style="font-size:3rem;">
               Recovered
@@ -48,8 +48,8 @@
             </div>
           </div>
     </div>
-    <div class="col border d-flex justify-content-center m-3 p-3 shadow-lg p-3 death">
-        <div class="ui statistic">
+    <div class="col border d-flex justify-content-center m-3 py-3 px-4 shadow-lg death">
+        <div class="ui statistic w-100">
           <br>
             <div class="label" style="font-size:3rem;">
               Death
@@ -62,10 +62,11 @@
             <div class="progress">
               <div class="progress-bar" role="progressbar" style="width: {{death_perc}}%" attr.aria-valuenow="{{death_perc}" aria-valuemin="0" aria-valuemax="100">{{death_perc}}%</div>
             </div>
+            <br>
           </div>
     </div>
-    <div class="col border d-flex justify-content-center m-3 p-3 shadow-lg p-3 actv">
-        <div class="ui statistic">
+    <div class="col border d-flex justify-content-center m-3 px-4 py-3 shadow-lg  actv">
+        <div class="ui statistic w-100">
           <br>
             <div class="label" style="font-size:3rem;">
               Active
@@ -98,11 +99,17 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let data of datewisedata">
+
+    <!-- <div *ngIf="datewisedata.length>0; then thenBlock else elseBlock"></div> -->
+
+    <tr *ngFor="let data of datewisedata" >
       <th scope="row" class="text-center">{{data[0]}}</th>
       <td class="text-center">{{data[1]}}</td>
       <td class="text-center">{{data[2]}}</td>
       <td class="text-center">{{data[3]}}</td>
+    </tr>
+    <tr *ngIf="datewisedata.length<=0">
+      <td colspan="4" class="text-center"><h2>No data Found !!!</h2></td>
     </tr>
   </tbody>
 </table>
@@ -111,5 +118,6 @@
 
 </div>
 </div>
+<br><br>
 <img src="../../assets/countries.gif" class="rounded mx-auto d-block d-none d-sm-block d-md-none" alt="" width="100%" height="18%">
 <br><br><br>

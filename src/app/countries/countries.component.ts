@@ -42,7 +42,7 @@ export class CountriesComponent implements OnInit {
            this.countries.sort();
         }, 
         complete : ()=>{
-          this.loading = false;
+          // this.loading = false;
         }
     });
   // Loads default country statistics 
@@ -71,7 +71,7 @@ export class CountriesComponent implements OnInit {
         this.updateCountryDateWiseData(country);
         }, 
         complete : ()=>{
-          this.loading = false;
+          // this.loading = false;
         }
       });
 

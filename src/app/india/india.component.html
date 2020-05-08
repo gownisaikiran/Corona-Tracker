@@ -1,5 +1,5 @@
 <!-- Loader -->
-<div class="ui  inverted dimmer" [class.active]='loading'>
+<div class="ui  inverted dimmer" [class.active]='loading' style="position: fixed;">
     <div class="ui text loader">Loading</div>
 </div>
   <!-- end -->
@@ -17,21 +17,21 @@
 </div>
   </div>
   <div class="row m-3">
-      <div class="col border d-flex justify-content-center m-3 p-3 shadow-lg p-3  confrmd">
-          <div class="ui statistic">
+      <div class="col border d-flex justify-content-center m-3 px-4 py-3 shadow-lg confrmd">
+          <div class="ui statistic w-100">
             <br>
               <div class="label" style="font-size:3rem;">
                 Confirmed
               </div>
               <br>
-              <div class="value counter-count">
+              <div class="value">
                 {{confirmed}}
               </div>
               <br>
             </div> 
       </div>
-      <div class="col border d-flex justify-content-center m-3 p-3 shadow-lg p-3  recvrd">
-          <div class="ui statistic">
+      <div class="col border d-flex justify-content-center m-3 px-4 py-3 shadow-lg recvrd">
+          <div class="ui statistic w-100">
             <br>
               <div class="label" style="font-size:3rem;">
                 Recovered
@@ -46,8 +46,8 @@
               </div>
             </div>
       </div>
-      <div class="col border d-flex justify-content-center m-3 p-3 shadow-lg p-3  death">
-          <div class="ui statistic">
+      <div class="col border d-flex justify-content-center m-3 px-4 py-3 shadow-lg death">
+          <div class="ui statistic w-100">
             <br>
               <div class="label" style="font-size:3rem;">
                 Death
@@ -62,8 +62,8 @@
               </div>
             </div>
       </div>
-      <div class="col border d-flex justify-content-center m-3 p-3 shadow-lg p-3 actv">
-          <div class="ui statistic">
+      <div class="col border d-flex justify-content-center m-3 px-4 py-3 shadow-lg  actv">
+          <div class="ui statistic w-100">
             <br>
               <div class="label" style="font-size:3rem;">
                 Active
