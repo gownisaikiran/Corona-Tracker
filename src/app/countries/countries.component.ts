@@ -59,7 +59,9 @@ export class CountriesComponent implements OnInit {
     this.apiDataService.getCountryWiseData(country).subscribe(
       {
         next: (result) => {
-          
+
+        console.log(result)
+
         this.confirmed = +result['response'][0]['cases']['total'];
         this.active= +result['response'][0]['cases']['active'];
         this.recovered= +result['response'][0]['cases']['recovered'];
@@ -72,6 +74,10 @@ export class CountriesComponent implements OnInit {
         }, 
         complete : ()=>{
           // this.loading = false;
+        },
+        error : ()=>{
+          this.loading = false;
+          
         }
       });
 
@@ -86,11 +92,11 @@ export class CountriesComponent implements OnInit {
     this.apiDataService.getCountryWiseDateData(country).subscribe(
       {
         next: (result) => {
-
+        
         var myData = Object.keys(result).map(key => {
           return result[key];
       })
-         //console.log(myData);
+        console.log(myData);
         
          for(let i=0;i<myData.length;i++){
             //console.log(myData[i]);
@@ -104,6 +110,9 @@ export class CountriesComponent implements OnInit {
         
         }, 
         complete : ()=>{
+          this.loading = false;
+        },
+        error : ()=>{
           this.loading = false;
         }
       });
