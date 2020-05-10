@@ -9,8 +9,8 @@
   <div class="">
     <div class="form-group col-lg-5 mx-auto">
         <label for="c">Select State</label>
-        <select id="c" class="form-control" name="country" #input (change)='updateStateWiseData(input.value)'>
-            <option value="{{state}}"  *ngFor="let state of states"  [selected]="state==default_state">{{state}}</option>
+        <select id="c" class="form-control"  #input (change)='updateStateWiseData(input.value)'>
+            <option value="{{state[0]}}"  *ngFor="let state of states"  [selected]="state[0]==default_state">{{state[0]}}</option>
         </select>
 
     </div>
@@ -79,7 +79,54 @@
             </div>
       </div>  
   </div>
-
+  <br>
+  <div>
+    <h1 class="text-center">Cases Today</h1>
+  </div>
+  
+  <!-- Today's Data -->
+  <div class="row m-3">
+    <div class="col border d-flex justify-content-center m-3 px-4 py-3 shadow-lg confrmd">
+        <div class="ui statistic w-100">
+          <br>
+            <div class="label" style="font-size:3rem;">
+              Confirmed
+            </div>
+            <br>
+            <div class="value counter-count">
+              {{today_confirmed}}
+            </div>
+            <br>
+          </div> 
+    </div>
+    <div class="col border d-flex justify-content-center m-3 px-4 py-3 shadow-lg recvrd">
+        <div class="ui statistic w-100">
+          <br>
+            <div class="label" style="font-size:3rem;">
+              Recovered
+            </div>
+            <br>
+            <div class="value">
+              {{today_recovered}}
+            </div>
+            <br>
+          </div>
+    </div>
+    <div class="col border d-flex justify-content-center m-3 py-3 px-4 shadow-lg death">
+        <div class="ui statistic w-100">
+          <br>
+            <div class="label" style="font-size:3rem;">
+              Death
+            </div>
+            <br>
+            <div class="value">
+              {{today_deaths}}
+            </div>
+            <br>
+          </div>
+    </div>  
+  </div>
+  <!-- today's data end -->
 
   <div class="justify-content-center">
     <div class="col-12">

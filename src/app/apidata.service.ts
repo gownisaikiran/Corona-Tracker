@@ -44,9 +44,25 @@ export class ApidataService {
     //return this.http.get<IGlobalData[]>(localUrl ,{headers: {"x-rapidapi-host": "covid-19-data.p.rapidapi.com","x-rapidapi-key": "8dab45a16fmsh59c7b5c80bab8dep175e69jsncbca2b095e1b"}} );
   }
 
+  getGlobalTodayData(){
+    return this.http.get("https://api.covid19api.com/summary").pipe(
+        map(result => {      
+          return result['Global'];
+        })
+      );
+  }
+
 
   getStates(){
     return this.http.get("https://api.covid19india.org/state_district_wise.json").pipe(
+      map(result => {      
+        return result;
+      })
+    );
+  }
+
+  getStateDailyData(){
+    return this.http.get("https://api.covid19india.org/states_daily.json").pipe(
       map(result => {      
         return result;
       })
@@ -63,7 +79,11 @@ export class ApidataService {
   getCountryWiseDateData(country:string){
     if(country=='USA')
     country='united-states';
-    return this.http.get("https://api.covid19api.com/country/"+country.toLowerCase()).pipe(
+
+    if(country=='Africa')
+    country='south-africa';
+
+    return this.http.get("https://api.covid19api.com/total/country/"+country.toLowerCase()).pipe(
       map(result => {      
         return result;
       })

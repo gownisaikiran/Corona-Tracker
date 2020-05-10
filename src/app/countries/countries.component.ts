@@ -17,6 +17,9 @@ export class CountriesComponent implements OnInit {
   rec_perc=0;
   death_perc=0;
   active_perc=0;
+  today_confirmed=0;
+  today_recovered=0;
+  today_deaths=0;
   loading = true;
   countries:string[]  = [];
   datewisedata=[];
@@ -107,15 +110,49 @@ export class CountriesComponent implements OnInit {
             let date1=date.substr(0,10);
             this.datewisedata.push([date1,confirmed,recovered,death]);
          }
-        
+            this.countryTodayData(country);
         }, 
         complete : ()=>{
-          this.loading = false;
+          //this.loading = false;
         },
         error : ()=>{
           this.loading = false;
         }
       });
+  }
+
+  countryTodayData(country:string):void{
+
+    if(country=='USA')
+    country='United States of America';
+
+    if(country=='Africa')
+    country='South Africa';
+
+    this.today_confirmed=0;
+    this.today_recovered=0;
+    this.today_deaths=0;
+
+    this.apiDataService.getCountries().subscribe({
+      next: (result) => {            
+       console.log(result);
+       for(let i=0;i<result.length;i++)
+       {
+          console.log(country,result[i].Country)
+          if(country==result[i].Country)
+          {
+            this.today_confirmed=result[i].NewConfirmed;
+            this.today_recovered=result[i].NewRecovered;
+            this.today_deaths=result[i].NewDeaths;
+          }     
+       }
+             
+      }, 
+      complete : ()=>{
+        this.loading = false;
+      }
+    });
+
   }
 
 }

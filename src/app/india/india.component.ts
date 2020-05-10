@@ -14,10 +14,13 @@ export class IndiaComponent implements OnInit {
   recovered=0;
   death=0;
   active=0;
+  today_confirmed=0;
+  today_recovered=0;
+  today_deaths=0;
   rec_perc=0;
   death_perc=0;
   active_perc=0;
-  states:string[]=[];
+  states:any[]=[];
   districts=[];
 
   constructor(private apiDataService:ApidataService) { }
@@ -26,13 +29,12 @@ export class IndiaComponent implements OnInit {
 
     this.apiDataService.getStates().subscribe(
       {
-        next: (result) => {  
-          for(let key in result)  
+        next: (result) => {   
+          for(let entry of Object.entries(result))
           {
-            this.states.push(key);
-            //console.log(key)
-          }  
-
+            this.states.push([entry[0],entry[1]['statecode']]);            
+          }
+         // console.log(this.states)
           this.states.sort();
           
         }, 
@@ -51,7 +53,7 @@ export class IndiaComponent implements OnInit {
     this.death=0;
     this.active=0;
     this.districts=[];
-  
+
     this.apiDataService.getStates().subscribe(
       {
         next: (result) => {  
@@ -60,7 +62,7 @@ export class IndiaComponent implements OnInit {
           {
             if(entry[0]==state)
             {
-              console.log(entry[0])
+             // console.log(entry[0])
               for(let data of Object.entries(entry[1]['districtData']))
               {
                 this.districts.push([data[0],data[1]['confirmed'],data[1]['recovered'],data[1]['deceased']]);
@@ -72,16 +74,52 @@ export class IndiaComponent implements OnInit {
                 this.death_perc= +((this.death/this.confirmed)*100).toFixed(2);
                 this.active_perc= +((this.active/this.confirmed)*100).toFixed(2);
                 // console.log(data[1]['confirmed'])
+                
               }
-              console.log(this.confirmed,this.recovered,this.death);
+             // console.log(this.confirmed,this.recovered,this.death);
             }            
           }
               this.districts.sort();
+              if(state=='Telangana') state='tg';
+              this.stateTodayData(state);
         }, 
         complete : ()=>{
-          this.loading = false;
+          //this.loading = false;
         }
       });
+  }
+
+  stateTodayData(state:string):void{
+
+    for(let i=0;i<this.states.length;i++)
+    {
+      if(this.states[i][0]==state)
+      state=this.states[i][1]
+    }
+
+    this.today_confirmed=0;
+    this.today_recovered=0;
+    this.today_deaths=0;
+    state=state.toLowerCase();
+    this.apiDataService.getStateDailyData().subscribe({
+      next: (result) => {            
+      // console.log(result);
+       for(let entry of Object.entries(result))
+       {
+         this.today_confirmed = entry[1][entry[1].length-3][state];
+         this.today_recovered = entry[1][entry[1].length-2][state];
+         this.today_deaths = entry[1][entry[1].length-1][state];
+
+       // console.log(entry);
+       }
+
+             
+      }, 
+      complete : ()=>{
+        this.loading = false;
+      }
+    });
+
   }
 
 }
