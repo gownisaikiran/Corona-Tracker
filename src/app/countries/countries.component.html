@@ -23,7 +23,7 @@
     <div class="col border d-flex justify-content-center m-3 px-4 py-3 shadow-lg confrmd">
         <div class="ui statistic w-100">
           <br>
-            <div class="label" style="font-size:3rem;">
+            <div class="label" style="font-size:2rem;">
               Confirmed
             </div>
             <br>
@@ -37,7 +37,7 @@
     <div class="col border d-flex justify-content-center m-3 px-4 py-3 shadow-lg recvrd">
         <div class="ui statistic w-100">
           <br>
-            <div class="label" style="font-size:3rem;">
+            <div class="label" style="font-size:2rem;">
               Recovered
             </div>
             <br>
@@ -53,7 +53,7 @@
     <div class="col border d-flex justify-content-center m-3 py-3 px-4 shadow-lg death">
         <div class="ui statistic w-100">
           <br>
-            <div class="label" style="font-size:3rem;">
+            <div class="label" style="font-size:2rem;">
               Death
             </div>
             <br>
@@ -70,7 +70,7 @@
     <div class="col border d-flex justify-content-center m-3 px-4 py-3 shadow-lg  actv">
         <div class="ui statistic w-100">
           <br>
-            <div class="label" style="font-size:3rem;">
+            <div class="label" style="font-size:2rem;">
               Active
             </div>
             <br>
@@ -84,6 +84,31 @@
           </div>
     </div>  
 </div>
+<br>
+<!-- Chart Data -->
+<div class="row m-3">
+  <div class="col d-flex justify-content-center px-4">
+    <google-chart #chart
+    [title]="title"
+    [type]="type"
+    [data]="data1"
+    [options]="options"
+    [height]="height"
+>
+  </google-chart>
+  </div>
+  <div class="col d-flex justify-content-center px-4">
+    <google-chart #chart
+    [title]="title"
+    [type]="type1"
+    [data]="data2"  
+    [options]="options1"
+    [height]="height"
+>
+  </google-chart>
+  </div>  
+</div>
+<!-- chart data end -->
 
 <div>
   <h1 class="text-center">Cases Today</h1>
@@ -94,7 +119,7 @@
   <div class="col border d-flex justify-content-center m-3 px-4 py-3 shadow-lg confrmd">
       <div class="ui statistic w-100">
         <br>
-          <div class="label" style="font-size:3rem;">
+          <div class="label" style="font-size:2rem;">
             Confirmed
           </div>
           <br>
@@ -107,7 +132,7 @@
   <div class="col border d-flex justify-content-center m-3 px-4 py-3 shadow-lg recvrd">
       <div class="ui statistic w-100">
         <br>
-          <div class="label" style="font-size:3rem;">
+          <div class="label" style="font-size:2rem;">
             Recovered
           </div>
           <br>
@@ -120,7 +145,7 @@
   <div class="col border d-flex justify-content-center m-3 py-3 px-4 shadow-lg death">
       <div class="ui statistic w-100">
         <br>
-          <div class="label" style="font-size:3rem;">
+          <div class="label" style="font-size:2rem;">
             Death
           </div>
           <br>

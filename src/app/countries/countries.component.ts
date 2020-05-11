@@ -23,7 +23,35 @@ export class CountriesComponent implements OnInit {
   loading = true;
   countries:string[]  = [];
   datewisedata=[];
+  title = 'Case-type shares in the country as on today';
+  type = 'PieChart';
+  type1 = 'ColumnChart';
+  data1 = [ ];
+  data2 = [ ];
+  options = {    
+    is3D:true,
+    colors: ['red','blue','green'],
+ };
   
+ options1 = {    
+  title: 'Case-type graph in the country as on today', 
+  colors: ['blue'],
+  animation: {
+    duration: 3000,
+    easing: 'out',
+    startup: true
+  },
+  hAxis: {
+    title: 'Case Type'
+  },
+  vAxis:{
+    title: 'No of Cases'
+  }
+
+};
+
+  width = 400;
+  height = 400;
 
   constructor(private apiDataService:ApidataService) { }
 
@@ -63,7 +91,7 @@ export class CountriesComponent implements OnInit {
       {
         next: (result) => {
 
-        console.log(result)
+       // console.log(result)
 
         this.confirmed = +result['response'][0]['cases']['total'];
         this.active= +result['response'][0]['cases']['active'];
@@ -72,6 +100,17 @@ export class CountriesComponent implements OnInit {
         this.rec_perc= +((this.recovered/this.confirmed)*100).toFixed(2);
         this.death_perc= +((this.death/this.confirmed)*100).toFixed(2);
         this.active_perc= +((this.active/this.confirmed)*100).toFixed(2);
+        
+        this.data1=[];
+        this.data2=[];
+        this.data1.push(['Recovered',this.recovered]);
+        this.data1.push(['Deaths',this.death]);
+        this.data1.push(['Active',this.active]);
+
+        this.data2.push(['Confimred',this.confirmed]);
+        this.data2.push(['Recovered',this.recovered]);
+        this.data2.push(['Deaths',this.death]);
+        this.data2.push(['Active',this.active]);
 
         this.updateCountryDateWiseData(country);
         }, 
@@ -99,7 +138,7 @@ export class CountriesComponent implements OnInit {
         var myData = Object.keys(result).map(key => {
           return result[key];
       })
-        console.log(myData);
+        //console.log(myData);
         
          for(let i=0;i<myData.length;i++){
             //console.log(myData[i]);
@@ -110,6 +149,7 @@ export class CountriesComponent implements OnInit {
             let date1=date.substr(0,10);
             this.datewisedata.push([date1,confirmed,recovered,death]);
          }
+
             this.countryTodayData(country);
         }, 
         complete : ()=>{
@@ -135,10 +175,10 @@ export class CountriesComponent implements OnInit {
 
     this.apiDataService.getCountries().subscribe({
       next: (result) => {            
-       console.log(result);
+       //console.log(result);
        for(let i=0;i<result.length;i++)
        {
-          console.log(country,result[i].Country)
+          //console.log(country,result[i].Country)
           if(country==result[i].Country)
           {
             this.today_confirmed=result[i].NewConfirmed;

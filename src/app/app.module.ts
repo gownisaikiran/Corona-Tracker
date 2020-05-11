@@ -26,7 +26,7 @@ import { IndiaComponent } from './india/india.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    GoogleChartsModule.forRoot(),
+    GoogleChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
